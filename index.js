@@ -1,5 +1,6 @@
 const { default: inquirer } = require("inquirer");
 const fs = require("fs");
+const generateMarkdown = require("./utils/generateMarkdown");
 
 const questions = [
 
@@ -67,23 +68,27 @@ const questions = [
         "GNU Lesser General Public License v2.1",
         "Mozilla Public License 2.0",
         "The Unlicense"],   
+    name: "license",
     default:"none",
-  },
+    
+    },
 ])
 
 .then((answers) => {
     const fileName = `${answers.name.toLowerCase().split(' ').join('')}.json`;
   
-    fs.writeFile(fileName, JSON.stringify(answers, null, '/t'), (err) =>
+    fs.writeFile(fileName, questions.value, (err) =>
     err ? console.log(err) : console.log("Input received! Thank you.")
     );
 })
   
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// function writeToFile(fileName, answers) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+
+}
 
 // Function call to initialize app
 init();
