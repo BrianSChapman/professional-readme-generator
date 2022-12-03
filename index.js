@@ -1,4 +1,4 @@
-const { default: inquirer } = require("inquirer");
+const inquirer = require("inquirer");
 const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown");
 
@@ -53,9 +53,15 @@ const questions = [
     default:"none",
   },
   {
+    type: "confirm",
+    message: "Does your project have a license?",
+    name: "licenseConfirm",
+  },  
+  {
     type: "list",
-    message: "Select your license below (if any)",
-    choices: ["Apache License 2.0",
+    message: "Select your license below",
+    choices: [
+        "Apache License 2.0",
         "GNU General Public License v3.0",
         "MIT License",
         "BSD 2-Clause 'Simplified' License",
@@ -65,30 +71,29 @@ const questions = [
         "Eclipse Public License 2.0",
         "GNU Affero General Public License v3.0",
         "GNU General Public License v2.0",
-        "GNU Lesser General Public License v2.1",
         "Mozilla Public License 2.0",
-        "The Unlicense"],   
+        "The Unlicense",],   
     name: "license",
-    default:"none",
     
     },
 ])
 
 .then((answers) => {
-    const fileName = `${answers.name.toLowerCase().split(' ').join('')}.json`;
+    const fileName = `${answers.name.toLowerCase().split(' ').join('')}.md`;
   
-    fs.writeFile(fileName, questions.value, (err) =>
+    fs.writeFile(fileName, mark, (err) =>
     err ? console.log(err) : console.log("Input received! Thank you.")
     );
-})
+}),
   
-// TODO: Create a function to write README file
-// function writeToFile(fileName, answers) {}
 
 // TODO: Create a function to initialize app
 function init() {
+    return inquirer.prompt(questions)
+        .then(answers) => {
+            const createMd = generateMarkdown(answers);
 
-}
-
+        }
+    }
 // Function call to initialize app
 init();
