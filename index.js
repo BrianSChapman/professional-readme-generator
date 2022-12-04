@@ -75,25 +75,22 @@ const questions = [
         "The Unlicense",],   
     name: "license",
     
-    },
-])
-
-.then((answers) => {
-    const fileName = `${answers.name.toLowerCase().split(' ').join('')}.md`;
-  
-    fs.writeFile(fileName, mark, (err) =>
-    err ? console.log(err) : console.log("Input received! Thank you.")
-    );
-}),
+     },
+  ])
+]
   
 
 // TODO: Create a function to initialize app
 function init() {
     return inquirer.prompt(questions)
-        .then(answers) => {
-            const createMd = generateMarkdown(answers);
-
+        .then((answers)=> {
+                const fileName = `${answers.name.toLowerCase().split(' ').join('')}.md`;
+                const generateReadMe = markDown.generateMarkdown(answers)
+                fs.writeFile(fileName, generateReadMe, (err) =>
+                err ? console.log("Something went wrong. Please try again!") : console.log("Input received! Thank you.")
+                );
+            })
         }
-    }
-// Function call to initialize app
-init();
+    
+// // Function call to initialize app
+init()
