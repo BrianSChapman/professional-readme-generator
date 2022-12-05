@@ -68,21 +68,20 @@ const generateMarkdown = require('./utils/generateMarkdown');
        name: 'license',
     },
   ])
+//  Function to initialize app
+function init() {
+    return inquirer.prompt(questions)
+    .then((answers) => {
+        const fileName = `${answers.name.toLowerCase().split(' ').join('')}.md`;
+        const readMeContent = generateMarkdown(answers);
 
-.then(answers) => {
-    const fileName = `${answers.name.toLowerCase().split(' ').join('')}.md`;
-    const readMeContent = generateMarkdown(answers);
-
- fs.writeFile(fileName, readMeContent, (err) =>
-      err
-        ? console.log('Something went wrong. Please try again!')
-        : console.log('Input received! Thank you.')
-    ) 
+     fs.writeFile(fileName, readMeContent, (err) =>
+          err
+            ? console.log('Something went wrong. Please try again!')
+            : console.log('Input received! ReadMe on the way.')
+        ); 
+    });
 }
 
-// TODO: Create a function to initialize app
-// function init() 
-//After you get responses but before you write it to file
-
-// // Function call to initialize app
-// init()
+// Function call to initialize app
+init()
