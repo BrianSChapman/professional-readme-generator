@@ -1,7 +1,6 @@
 // Function written to render the license badge if user selects a license.
 function renderLicenseBadge(license) {
   const badgeImg = [
-    'none',
     'Apache License 2.0: [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)]',
     'GNU General Public License v3.0: [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]',
     'MIT License:[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)',
@@ -12,18 +11,12 @@ function renderLicenseBadge(license) {
     'Mozilla Public License 2.0: [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)]',
     'The Unlicense: [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)]',
   ]
-   if(badgeImg == 'none'){
-       return('');
-  }       else { 
-      return (license)
-  }
+    return badgeImg[license] 
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// Return license link into license section if applicable
 function renderLicenseLink(license) {
-  const linkToLicense = [
-    'none',    
+  const linkToLicense = [   
     'Apache License 2.0: (https://opensource.org/licenses/Apache-2.0)',
     'GNU General Public License v3.0: (https://www.gnu.org/licenses/gpl-3.0)',
     'BSD 2-Clause Simplified License: (https://opensource.org/licenses/BSD-2-Clause)',
@@ -34,30 +27,21 @@ function renderLicenseLink(license) {
     'The Unlicense:(http://unlicense.org/)',
   
   ]
-  if (license.value == 'none') {
-    return('');
-  }  else {
-    return linkToLicense[license]
-  }
+  return linkToLicense[license]
 }
-
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {
-  if (license !=='none'){
+ function renderLicenseSection(license) {
+    if (license){
     return `Please go to ${renderLicenseLink(license)} for additional information.`
-  } else {
-    return('');
+  } else { 
+        return('');
   }
-
-
-}
+ }
 
 // TODO: Create a function to generate markdown for README
 generateMarkdown = ({ title, userName, email,description, installation, usage, contribute, testing, license}) => {
   return `# ${title}
 
-  ${renderLicenseBadge(license)}
+  ${this.renderLicenseBadge(license)}
 
 ## Table of Contents
 - [Description](#Description)
@@ -91,8 +75,8 @@ generateMarkdown = ({ title, userName, email,description, installation, usage, c
     ${email}
 
 ## License
-    ${renderLicenseSection(license)}
+    ${renderLicenseSection[license]}
   `;
 }
 
-module.exports = generateMarkdown;
+module.exports = generateMarkdown; 

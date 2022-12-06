@@ -56,7 +56,7 @@ const questions = [
     {
       type: 'list',
       message: 'Select your license below',
-      choices: ['none',
+      choices: [
         'Apache License 2.0',
         'GNU General Public License v3.0',
         'MIT License',
@@ -67,6 +67,7 @@ const questions = [
         'Mozilla Public License 2.0',
         'The Unlicense'],
        name: 'license',
+       default: 'none',
     },
   ]
 
