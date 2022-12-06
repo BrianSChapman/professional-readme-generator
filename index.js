@@ -2,7 +2,8 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
 
-  inquirer.prompt([
+//Questions to be answered in terminal
+const questions = [
     {
       type: 'input',
       message: 'Hello! Please input your first and last name',
@@ -67,21 +68,22 @@ const generateMarkdown = require('./utils/generateMarkdown');
         'The Unlicense'],
        name: 'license',
     },
-  ])
+  ]
+
+
 //  Function to initialize app
 function init() {
     return inquirer.prompt(questions)
     .then((answers) => {
         const fileName = `${answers.name.toLowerCase().split(' ').join('')}.md`;
         const readMeContent = generateMarkdown(answers);
-
+    
      fs.writeFile(fileName, readMeContent, (err) =>
           err
             ? console.log('Something went wrong. Please try again!')
             : console.log('Input received! ReadMe on the way.')
         ); 
-    });
-}
-
-// Function call to initialize app
+    }
+)}
+// // Call function 
 init()
