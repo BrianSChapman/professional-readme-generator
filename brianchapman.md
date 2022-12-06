@@ -1,4 +1,4 @@
-# f
+# Happy Hour Finder
 
   undefined
 
@@ -12,26 +12,26 @@
 - [License](#License)
 
 ## Description
-    f
+    Find a Happy Hour near you beacause you deserve it! 
 
 ## Usage
-    f
+    Accept location services and enjoy a sweet cheap drink deal!
 
 ## Installation
-    f
+    none
 
 ## Usage
-    f
+    Accept location services and enjoy a sweet cheap drink deal!
 
 ## Contributions
-    f
+    N/A
 
 ## Testing
-    f
+    none
 
 ## Questions
-    df
-    ff
+    brianSchapman
+    bchapman9@gmail.com
 
 ## License
     undefined
